@@ -332,9 +332,33 @@ footer{padding:38px 0 44px;background:white;border-top:1px solid var(--line)}
 .footer-links a{transition:color .18s ease}
 .footer-links a:hover{color:var(--purple)}
 
+
+.mobile-menu{display:none;position:relative}
+.mobile-menu summary{
+  list-style:none;width:42px;height:42px;border:1px solid var(--line);border-radius:12px;
+  background:#fff;cursor:pointer;display:grid;place-items:center;box-shadow:0 5px 16px rgba(59,40,76,.06)
+}
+.mobile-menu summary::-webkit-details-marker{display:none}
+.mobile-menu-icon,.mobile-menu-icon::before,.mobile-menu-icon::after{
+  display:block;width:18px;height:2px;border-radius:999px;background:var(--ink);position:relative
+}
+.mobile-menu-icon::before,.mobile-menu-icon::after{content:"";position:absolute;left:0}
+.mobile-menu-icon::before{top:-6px}
+.mobile-menu-icon::after{top:6px}
+.mobile-menu[open] .mobile-menu-icon{background:transparent}
+.mobile-menu[open] .mobile-menu-icon::before{top:0;transform:rotate(45deg)}
+.mobile-menu[open] .mobile-menu-icon::after{top:0;transform:rotate(-45deg)}
+.mobile-menu-panel{
+  position:absolute;right:0;top:50px;min-width:190px;padding:9px;border:1px solid var(--line);
+  border-radius:16px;background:#fff;box-shadow:0 16px 40px rgba(35,27,45,.14);z-index:60
+}
+.mobile-menu-panel a{display:block;padding:11px 13px;border-radius:10px;font-size:15px;color:#4e4954}
+.mobile-menu-panel a:hover,.mobile-menu-panel a:focus-visible{background:var(--purple-soft);color:var(--purple)}
+
 @media(max-width:900px){
   .shell{width:min(100% - 32px,var(--max))}
   nav{display:none}
+  .mobile-menu{display:block}
   .hero{padding:64px 0 70px}
   .hero-inner{max-width:none}
   .section-head{grid-template-columns:1fr;gap:28px}
@@ -382,6 +406,16 @@ footer{padding:38px 0 44px;background:white;border-top:1px solid var(--line)}
       <a href="support.html">Support</a>
       <a href="terms.html">Terms</a>
     </nav>
+    <details class="mobile-menu">
+      <summary aria-label="Open navigation menu"><span class="mobile-menu-icon" aria-hidden="true"></span></summary>
+      <div class="mobile-menu-panel" aria-label="Mobile navigation">
+        <a href="#overview">Overview</a>
+        <a href="#app">The App</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="support.html">Support</a>
+        <a href="terms.html">Terms</a>
+      </div>
+    </details>
   </div>
 </header>
 
