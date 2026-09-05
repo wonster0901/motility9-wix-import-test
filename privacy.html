@@ -128,12 +128,13 @@ footer{padding:38px 0 44px;background:white;border-top:1px solid var(--line)}
     <div class="shell">
       <div class="kicker">MOTILITY9</div>
       <h1>Privacy Policy</h1>
-      <p class="lead">How MOTILITY9 handles examination data and images stored by the app.</p>
-      <div class="meta">Effective August 23, 2026</div>
+      <p class="lead">How MOTILITY9 handles local clinical data and the limited anonymous wallet and Google Play purchase data used for Report Credits.</p>
+      <div class="meta">Effective September 5, 2026</div>
     </div>
   </section>
+
   <div class="shell content">
-    
+
 <section class="card">
   <h2>1. About MOTILITY9</h2>
   <p>MOTILITY9 is a 9-Gaze capture and documentation app developed by WONWINNIE. It helps authorized users capture nine gaze positions, keep examinations with the patient record, add examination notes, review previous examinations, and generate PDF reports.</p>
@@ -141,15 +142,16 @@ footer{padding:38px 0 44px;background:white;border-top:1px solid var(--line)}
 </section>
 
 <section class="card">
-  <h2>2. Data stored on the device</h2>
-  <p>MOTILITY9 stores information needed for the examination on the device, including:</p>
+  <h2>2. Clinical data stored on the device</h2>
+  <p>MOTILITY9 stores the clinical information needed for examinations locally on the device, including:</p>
   <ul>
     <li>Patient information entered by the user, such as a patient ID or code and patient name.</li>
     <li>Examination information, including examiner, refractive correction, prism correction, date, time, and examination status.</li>
     <li>The nine eye-region images retained for the 9-Gaze examination.</li>
-    <li>Examination notes.</li>
-    <li>Report finalization status and report-credit information stored by the app.</li>
+    <li>Examination notes and report finalization status.</li>
+    <li>Local trial-credit state and other local app state needed to operate the report workflow.</li>
   </ul>
+  <p>MOTILITY9 does not upload patient records, examination information, examination notes, examination images, or generated PDF reports to the WONWINNIE wallet service.</p>
 </section>
 
 <section class="card">
@@ -160,42 +162,66 @@ footer{padding:38px 0 44px;background:white;border-top:1px solid var(--line)}
 </section>
 
 <section class="card">
-  <h2>4. Data sent to WONWINNIE</h2>
-  <p>MOTILITY9 does not currently upload patient records, examination information, notes, or examination images to a WONWINNIE server as part of the examination process.</p>
-  <p>MOTILITY9 does not automatically share this examination data with third parties. A PDF or other exported content is shared only when the user chooses a destination outside the app.</p>
-  <p>If this data handling changes in a future release, this policy will be updated before the relevant feature is made available.</p>
+  <h2>4. Anonymous Wallet and Report Credits</h2>
+  <p>MOTILITY9 does not require a user account, email address, phone number, or personal login. Paid Report Credits are managed through an anonymous Wallet service.</p>
+  <p>The Wallet service may collect or process the following limited data:</p>
+  <ul>
+    <li>A pseudonymous Wallet identifier used to identify the Wallet.</li>
+    <li>An app/device credential used to authenticate access to that Wallet.</li>
+    <li>Wallet balance and credit-ledger records needed to grant and consume paid Report Credits.</li>
+    <li>Report-unlock transaction identifiers used to prevent duplicate credit deductions.</li>
+    <li>Network metadata, such as an IP address, when needed for rate limiting, abuse prevention, and service security.</li>
+  </ul>
+  <p>These data are used for app functionality and, where applicable, fraud prevention, security, and transaction integrity. They are not used for advertising or marketing.</p>
 </section>
 
 <section class="card">
-  <h2>5. Security</h2>
-  <p>MOTILITY9 encrypts sensitive database fields and examination image files stored by the app. The Android release configuration also disables app-data backup and cleartext network traffic.</p>
-  <p>These measures are intended to reduce the risk of unauthorized access. No device or software system can guarantee absolute security, so users should also protect access to the device and follow their organization’s security procedures.</p>
+  <h2>5. Google Play purchases</h2>
+  <p>If a user chooses to purchase Report Credits through Google Play, MOTILITY9 receives purchase-related information needed to verify and fulfill the purchase. This may include a Google Play purchase token, product identifier, purchase status, and the resulting Wallet credit transaction.</p>
+  <p>MOTILITY9 sends the purchase token to the WONWINNIE backend, which uses Google Play services to verify the purchase before paid credits are granted. Purchase claims and credit-ledger records are retained as needed to prevent duplicate grants, replay, and double spending.</p>
+  <p>Payment card numbers, bank account details, and other payment-instrument credentials are processed by Google Play and are not received or stored by WONWINNIE.</p>
 </section>
 
 <section class="card">
-  <h2>6. Retention and deletion</h2>
-  <p>Examination data remains on the device until it is deleted through available app functions or removed with the app’s local data. Cancelling an in-progress examination removes the related session data and image files.</p>
-  <p>MOTILITY9 does not currently provide cloud synchronization for examination records. WONWINNIE cannot restore deleted or lost examination records from a cloud copy.</p>
+  <h2>6. Service providers and sharing</h2>
+  <p>WONWINNIE does not sell MOTILITY9 user data and does not provide it to advertising or marketing partners.</p>
+  <p>Backend Wallet and purchase-verification functions use Google Cloud services, and Google Play is used to process and verify in-app purchases. These providers process data as needed to deliver the relevant infrastructure, billing, security, and verification services.</p>
+  <p>Clinical examination data stored locally by MOTILITY9 is not automatically sent to these backend services. A PDF or other exported clinical content is shared only when the user chooses a destination outside the app.</p>
 </section>
 
 <section class="card">
-  <h2>7. PDF reports and sharing</h2>
+  <h2>7. Security</h2>
+  <p>MOTILITY9 encrypts sensitive database fields and examination image files stored by the app. Network communication with the WONWINNIE backend uses encrypted HTTPS connections, and the Android release configuration disallows cleartext network traffic.</p>
+  <p>The Wallet system is designed to avoid requiring personal identity information and uses authenticated credentials to protect Wallet access. Security controls also include measures intended to reduce duplicate transactions, replay, and automated abuse.</p>
+  <p>No device, network, or software system can guarantee absolute security, so users should also protect access to the device and follow their organization's security procedures.</p>
+</section>
+
+<section class="card">
+  <h2>8. Retention and deletion</h2>
+  <p>Clinical examination data remains on the device until it is deleted through available app functions or removed with the app's local data. Cancelling an in-progress examination removes the related session data and image files.</p>
+  <p>MOTILITY9 does not provide cloud synchronization for patient records, examination images, examination notes, or PDF reports. WONWINNIE cannot restore deleted or lost clinical records from a cloud copy.</p>
+  <p>Anonymous Wallet, purchase, and credit-ledger records may be retained as needed to maintain the paid-credit balance, preserve transaction integrity, prevent duplicate grants or deductions, and operate and secure the service.</p>
+  <p>MOTILITY9 does not currently provide an in-app or web-based mechanism for requesting deletion of backend Wallet or purchase records.</p>
+</section>
+
+<section class="card">
+  <h2>9. PDF reports and user-directed sharing</h2>
   <p>After an examination is finalized, MOTILITY9 can generate a PDF report. If a user saves, prints, or shares that PDF, the selected device, printer, app, or service determines how the exported file is handled after it leaves MOTILITY9.</p>
 </section>
 
 <section class="card">
-  <h2>8. Clinical use and minors</h2>
+  <h2>10. Clinical use and minors</h2>
   <p>MOTILITY9 is intended for healthcare professionals and other authorized users. Examination records may concern adults or minors.</p>
-  <p>Users are responsible for obtaining any consent or authorization required for examination imaging, record handling, storage, and sharing under applicable law and their organization’s policies.</p>
+  <p>Users are responsible for obtaining any consent or authorization required for examination imaging, record handling, storage, and sharing under applicable law and their organization's policies.</p>
 </section>
 
 <section class="card">
-  <h2>9. Changes to this policy</h2>
+  <h2>11. Changes to this policy</h2>
   <p>This policy may be updated when MOTILITY9 features or data practices change. The current version will be published on the official WONWINNIE website.</p>
 </section>
 
 <section class="card">
-  <h2>10. Privacy contact</h2>
+  <h2>12. Privacy contact</h2>
   <div class="contact">
     <span>Developer: WONWINNIE</span>
     <span>App: MOTILITY9</span>
