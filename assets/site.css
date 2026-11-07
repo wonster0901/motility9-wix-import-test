@@ -121,3 +121,6 @@ main { overflow-wrap: anywhere; }
   .hero h1, .about-grid h2 { max-width: none; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* Verified official MOTILITY9 store listing */
+.product-play { display: inline-flex; align-items: center; gap: .45rem; min-height: 48px; margin: .12rem 0 .6rem; font-size: .91rem; font-weight: 700; color: #4e3072; }
