@@ -115,7 +115,12 @@ def main():
                 continue
             if urlsplit(value).scheme:
                 check(urlsplit(value).scheme == "https", f"{route}: insecure external link")
-                check("play.google.com" not in value, f"{route}: unverified store CTA")
+                if "play.google.com" in value:
+                    check(
+                        value == "https://play.google.com/store/apps/details?id=com.wonwinnie.motility9"
+                        and route in {"/", "/motility9/"},
+                        f"{route}: unverified or misplaced store CTA",
+                    )
                 external.add(value)
                 continue
             if route != "/MOTILITY9_wix_import_test.html":
