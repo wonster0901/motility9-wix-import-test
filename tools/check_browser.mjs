@@ -8,13 +8,14 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const out = path.resolve(process.env.SITE_QA_OUTPUT || path.join(root, 'site-qa'));
 const base = process.env.SITE_PREVIEW_URL || 'http://127.0.0.1:8750';
 const baseline = '3497d2fab1c3f22aa5d08a075b4abcb839d31ea3';
+const finishBaseline = '53c71a0';
 const routes = ['/', '/motility9/', '/motility9/privacy/', '/motility9/support/',
   '/motility9/terms/', '/tasteroaming/', '/tasteroaming/privacy/',
   '/tasteroaming/support/', '/tasteroaming/terms/', '/privacy.html', '/support.html', '/terms.html'];
 const widths = process.env.QA_FAST ? [320, 1280] : [320, 375, 430, 768, 1280, 1440];
 const axe = await readFile(path.join(root, 'node_modules/axe-core/axe.min.js'), 'utf8');
 await mkdir(path.join(out, 'screenshots'), { recursive: true });
-const report = { baseline, productionDeployed: false, routes: routes.length, checks: [], issues: [], screenshots: [] };
+const report = { baseline, finishBaseline, productionDeployed: false, routes: routes.length, checks: [], issues: [], screenshots: [] };
 const server = process.env.SITE_PREVIEW_URL ? null : spawn('python3', ['-m', 'http.server', '8750', '--bind', '127.0.0.1'], { cwd: root, stdio: 'ignore' });
 let browser;
 try {
@@ -33,6 +34,9 @@ try {
   });
   page.on('response', response => {
     if (response.status() >= 400) report.issues.push({ kind: 'http', url: response.url(), status: response.status() });
+    if (response.url().includes('/assets/tasteroaming/') &&
+        response.headers()['content-type']?.split(';')[0] !== 'image/webp')
+      report.issues.push({ kind: 'image-mime', url: response.url() });
   });
 
   async function ready() {
@@ -43,7 +47,12 @@ try {
           img.scrollIntoView({ behavior: 'instant' });
           await new Promise(requestAnimationFrame);
         }
-        await img.decode();
+        let timer;
+        try {
+          await Promise.race([img.decode(), new Promise((_, reject) => {
+            timer = setTimeout(() => reject(Error(`Image decode timed out: ${img.getAttribute('src')}`)), 10000);
+          })]);
+        } finally { clearTimeout(timer); }
       }
       window.scrollTo({ top: 0, behavior: 'instant' });
     });
@@ -77,11 +86,27 @@ try {
         .filter(el => visible(el) && !el.closest('[role="img"]') && el.clientWidth > 0)
         .filter(el => el.scrollWidth > el.clientWidth + 1)
         .map(el => el.textContent.trim().slice(0, 160));
+      const foodImages = [...document.querySelectorAll('img[src^="/assets/tasteroaming/"]')].map(img => {
+        const rect = img.getBoundingClientRect();
+        return { src: img.getAttribute('src'), width: rect.width, height: rect.height,
+          naturalWidth: img.naturalWidth, naturalHeight: img.naturalHeight,
+          objectFit: getComputedStyle(img).objectFit,
+          mime: performance.getEntriesByName(img.currentSrc).map(e => e.contentType).filter(Boolean) };
+      });
+      const invalidFoodImages = foodImages.filter(img => img.naturalWidth !== 640 || img.naturalHeight !== 480 ||
+        Math.abs(img.width / img.height - 4 / 3) > 0.02 || img.objectFit !== 'cover');
+      const storeLinks = [...document.querySelectorAll('a[href*="play.google.com"]')].map(a => ({
+        href: a.getAttribute('href'), target: a.target, rel: a.rel }));
       return { overflow: document.documentElement.scrollWidth > innerWidth + 1, smallTargets, clipped,
+        foodImages, invalidFoodImages, storeLinks,
         brokenImages: [...document.images].filter(img => (img.complete && !img.naturalWidth) || (!img.complete && img.loading !== 'lazy')).map(img => img.getAttribute('src')) };
     });
     report.checks.push({ route, width, scale, menu, ...result });
-    if (result.overflow || result.smallTargets.length || result.clipped.length || result.brokenImages.length)
+    const expectedStoreLinks = ['/', '/motility9/'].includes(route) ? 1 : 0;
+    if (result.overflow || result.smallTargets.length || result.clipped.length || result.brokenImages.length ||
+        result.invalidFoodImages.length || result.storeLinks.length !== expectedStoreLinks ||
+        result.storeLinks.some(a => a.href !== 'https://play.google.com/store/apps/details?id=com.wonwinnie.motility9' ||
+          a.target !== '_blank' || !a.rel.includes('noopener') || !a.rel.includes('noreferrer')))
       report.issues.push({ kind: 'layout', route, width, scale, menu, ...result });
   }
 
@@ -103,6 +128,26 @@ try {
     }
   }
   await page.unroute('**/__baseline__/**');
+  // Also compare this finishing patch against the actual latest pre-patch
+  // branch, including its approved Play button and its own stylesheet bytes.
+  const beforeFinishCss = async route => route.fulfill({ contentType: 'text/css',
+    body: execFileSync('git', ['show', `${finishBaseline}:assets/site.css`], { cwd: root }) });
+  await page.route('**/assets/site.css', beforeFinishCss);
+  await page.route('**/__finish_baseline__/**', async route => {
+    const name = new URL(route.request().url()).pathname.endsWith('/taste.html') ? 'tasteroaming/index.html' : 'index.html';
+    return route.fulfill({ contentType: 'text/html; charset=utf-8',
+      body: execFileSync('git', ['show', `${finishBaseline}:${name}`], { cwd: root }) });
+  });
+  for (const width of [375, 1280]) {
+    await page.setViewportSize({ width, height: 900 });
+    for (const name of ['brand', 'taste']) {
+      await page.goto(`${base}/__finish_baseline__/${name}.html`);
+      await ready();
+      await screenshot(`before-finish-${name}-${width}`);
+    }
+  }
+  await page.unroute('**/assets/site.css', beforeFinishCss);
+  await page.unroute('**/__finish_baseline__/**');
   const shots = new Map([['/', 'brand'], ['/motility9/', 'motility9'], ['/tasteroaming/', 'tasteroaming'],
     ['/privacy.html', 'legacy-privacy'], ['/tasteroaming/privacy/', 'tasteroaming-privacy']]);
   let axeChecks = 0;
@@ -143,6 +188,7 @@ try {
             await summary.focus();
             await page.keyboard.press('Enter');
             if (!await summary.evaluate(el => el.parentElement.open)) report.issues.push({ kind: 'menu-open', route });
+            await ready();
             await layout(route, width, scale, true);
             await page.keyboard.press('Tab');
             if (!await page.evaluate(() => document.activeElement.matches('details[open] a')))

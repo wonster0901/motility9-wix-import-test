@@ -122,5 +122,26 @@ main { overflow-wrap: anywhere; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
-/* Verified official MOTILITY9 store listing */
+/* TasteRoaming approved food photography, 2026-11-07: eight reviewed 640x480 WebP assets. */
 .product-play { display: inline-flex; align-items: center; gap: .45rem; min-height: 48px; margin: .12rem 0 .6rem; font-size: .91rem; font-weight: 700; color: #4e3072; }
+.taste-card-photos { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 6px; width: 100%; margin-bottom: 1.1rem; overflow: hidden; border-radius: .65rem; }
+.taste-card-photos img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+.taste-hero-grid { display: grid; grid-template-columns: 1fr .88fr; gap: clamp(2rem,5vw,5rem); align-items: center; }
+.taste-hero-copy { min-width: 0; }
+.taste-hero-copy h1 { max-width: 13ch; }
+.taste-hero-photos { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .8rem; align-items: stretch; }
+.taste-photo { min-width: 0; margin: 0; overflow: hidden; border: 1px solid #deead0; border-radius: 1rem; background: #eef4e7; box-shadow: 0 12px 25px rgba(65,90,45,.06); }
+.taste-photo-main { grid-column: 1 / -1; }
+.taste-photo img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+.taste-photo figcaption { font-size: .76rem; color: #3f5140; padding: .43rem .7rem; font-weight: 700; }
+.food-gallery { background: #fafbf7; }
+.food-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1rem; }
+.food-tile { margin: 0; border: 1px solid var(--line); background: white; border-radius: .9rem; overflow: hidden; }
+.food-tile img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.food-tile figcaption { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: .2rem 1rem; padding: .85rem 1rem; }
+.food-tile figcaption strong { font-size: 1rem; }
+.food-tile figcaption span { font-size: .83rem; color: var(--muted); }
+.gallery-note { font-size: .84rem; color: var(--muted); margin-top: 1.3rem; }
+@media (max-width: 960px) { .taste-hero-grid { grid-template-columns: 1fr; } .taste-hero-photos { grid-template-columns: repeat(3,minmax(0,1fr)); } .taste-photo-main { grid-column: auto; } }
+@media (max-width: 800px) { .food-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media (max-width: 460px) { .taste-hero-photos { gap: .35rem; } .taste-photo { border-radius: .6rem; } .taste-photo figcaption { padding: .42rem; font-size: .68rem; } .food-grid { gap: .7rem; } .food-tile figcaption { padding: .7rem; } .food-tile figcaption strong { font-size: .88rem; } .food-tile figcaption span { font-size: .75rem; } }

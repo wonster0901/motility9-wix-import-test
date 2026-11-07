@@ -41,12 +41,14 @@ No route relies on JavaScript routing or a pretend redirect.
 - MOTILITY9's original whole HTML remains recoverable in Git. The historical
   import and `CNAME` remain byte-identical. Do not mistake the relocated page
   for a newly invented app screenshot or clinical feature.
-- TasteRoaming deliberately has no gallery, fabricated app icon, food images,
-  ratings, restaurant pins or download CTA. No approved TasteRoaming imagery was
-  present in this website repository. Its own white/lime/red treatment is separate
-  from MOTILITY9's purple design.
-- There is no verified official MOTILITY9 store URL in the supplied website
-  source, so no Google Play URL was invented for either product.
+- TasteRoaming now uses the eight owner-approved 640×480 WebP images in its hero,
+  gallery and brand-card strip, without changing any image bytes. The machine-readable
+  manifest and previously approved SHA-256 list agree. No app screenshots, fabricated
+  app icon, ratings, restaurant pins or TasteRoaming download CTA were added. Its
+  white/lime/red treatment stays separate from MOTILITY9's purple design.
+- Preserve the subsequently approved MOTILITY9 Play URL on the brand and MOTILITY9
+  home pages only: `https://play.google.com/store/apps/details?id=com.wonwinnie.motility9`.
+  Every other store URL is blocked, including a TasteRoaming pre-launch CTA.
 - Production HTML loads only local styles/images: no added JavaScript, forms,
   analytics, cookies, external fonts or third-party embeds. This source finding
   does not claim anything about hosting/server logs outside the repository.
@@ -96,7 +98,7 @@ for 30 days; screenshots can be regenerated from source.
 
 - Static: thirteen HTML routes, internal links/fragments/assets, metadata/lang,
   image alt attributes, no invented store links, draft-policy marking, exact
-  original policy/main copy, original CSS/image hashes and unchanged CNAME/archive.
+  original policy/main copy, original CSS/image hashes and unchanged CNAME/archive. The approved store anchor alone is excluded from the migrated home text comparison; all other original wording remains exact.
 - Browser: twelve navigated pages at 320, 375, 430, 768, 1280 and 1440px;
   100%/200% text. Resizing includes original pixel-based typography; the PDF
   illustration retains image semantics. Images are scrolled into view so lazy
@@ -105,7 +107,7 @@ for 30 days; screenshots can be regenerated from source.
   opening, link focus and closing. Controls are measured at >=48px in both axes.
 - Accessibility: axe WCAG A/AA/2.1 AA and best-practice checks on every navigated
   page at desktop and at 320px/200% text. No violation is waived to get PASS.
-- Screenshots: original main/privacy at desktop/mobile; brand, migrated MOTILITY9,
+- Screenshots: original main/privacy and pre-finish brand/TasteRoaming at desktop/mobile; brand, migrated MOTILITY9,
   TasteRoaming, legacy privacy and TasteRoaming privacy after the change, plus
   200% text captures of the three landing pages.
 - The retained historical import is byte-preserved and statically checked; it is
@@ -123,9 +125,32 @@ an owner-approved publication; no live before/after deployment was performed.
    actual ads/UMP and purchase/server settings, retention/deletion, backups,
    support handling and Play Data safety consistency. Drafts must not be submitted
    as final policies or become effective merely by merging this website PR.
-3. Confirm the exact released MOTILITY9 Play URL before adding a download link.
+3. Recheck the approved MOTILITY9 Play destination on the final published site;
+   TasteRoaming remains Coming Soon without a store URL.
 4. PC Work checks mobile/desktop appearance, browser zoom, keyboard/screen-reader
    behavior and existing legal URLs. Source/browser automation is not legal approval.
 5. Only after explicit publish/merge approval: verify the new directory routes,
    legacy paths and HTTPS from actual browsers; test mailbox delivery separately
    with authorization. Keep Wix/DNS/Zoho/Play changes out of this implementation.
+
+## Finish-patch integration — 2026-11-07
+
+- Source: owner-provided Google Drive file `1pHnXI1jb0wLvUj0M6AniEnrThxjDla2D`,
+  `WONWINNIE_Site_Finish_Patch_v1.zip` (419,434 bytes). ZIP SHA-256:
+  `38b65a28cb8628af7952ba6ef45d67a337e0809342b1146d7baaa86b760dcaf1`.
+- Reviewed against latest branch `53c71a0`, not blindly copied over `08e49f6`.
+  The existing MOTILITY9 HTML and approved Play CTA remain unchanged by this patch.
+- Eight original WebPs total **405,248 bytes**. Each matches both the ZIP manifest
+  and the already-approved SHA-256 list in `TASTEROAMING_WEBSITE_IMAGE_SELECTION_v1.md`.
+  Actual RIFF/WebP headers, 640×480 dimensions and file sizes are checked.
+  The full 350-image master was not downloaded; verification uses the eight supplied
+  original payloads and their independently recorded approval hashes.
+- Corrected the supplied hero-photo `height:100%` rule to `height:auto`: actual
+  Chromium measurement initially found tall image boxes, despite `aspect-ratio:4/3`.
+  Browser tests now measure every displayed food image's ratio and natural dimensions,
+  check WebP response MIME and preserve the two official store links at all viewports.
+- Static checks pin the approved manifest, reject unapproved files and photos,
+  require all eight images on the TasteRoaming page, and keep every existing
+  policy/support/archive HTML file byte-identical to `53c71a0`.
+- TasteRoaming privacy/terms remain not-effective review drafts. No publishing,
+  main update, DNS/Wix/Zoho change or PR merge is part of this integration.
