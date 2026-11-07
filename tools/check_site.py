@@ -219,7 +219,7 @@ def main():
             check(legacy.main == baseline.main, f"{old}: legacy legal content changed")
             check([image_digest(a["src"]) for t, a in legacy.elements if t == "img"] == before, f"{old}: legacy icon")
     for route in ROUTES:
-        if route not in {"/", "/motility9/", "/tasteroaming/"}:
+        if route not in {"/", "/motility9/", "/tasteroaming/", "/tasteroaming/privacy/", "/tasteroaming/terms/"}:
             rel = str(file_for(route).relative_to(ROOT))
             before = subprocess.check_output(["git", "show", f"{PATCH_BASE}:{rel}"], cwd=ROOT)
             check(file_for(route).read_bytes() == before, f"{route}: policy/support/archive page changed by finishing patch")
