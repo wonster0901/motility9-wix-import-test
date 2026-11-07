@@ -1,0 +1,70 @@
+{
+  "baseline_commit": "3497d2fab1c3f22aa5d08a075b4abcb839d31ea3",
+  "original_files": {
+    "index.html": "6ce9dfc2c1809885f282f90c497e1b07222b324a1d5782a25d8ed54b84bb74c6",
+    "privacy.html": "3147ab05d8553c945d9cd33b09eed01bf308d6a49baae72f2ca5f61a03940c42",
+    "support.html": "6d12b3e4923cc671abb9dd60ece69316e99eb43737aab046e8d2a437ad3f8241",
+    "terms.html": "4c7d2e24f2e01cb50338506418fb5b09535b7a8e0702d0c5bdd6bff68b5578c0"
+  },
+  "images": [
+    {
+      "path": "/assets/motility9/app-icon.png",
+      "sha256": "294d7c18c53be63b92512616c6f76c0f522e08325dab32a2472eac20d444bea1",
+      "bytes": 305979
+    },
+    {
+      "path": "/assets/motility9/result-review.png",
+      "sha256": "675dd615e6f750c5874057f0e470b5bd9ea720e3fdc9bd9fd52988ae97c6f1b8",
+      "bytes": 1050236
+    },
+    {
+      "path": "/assets/motility9/gaze-01.jpg",
+      "sha256": "71c6ef950e7786f0d237cee338e3c62fccfbe2da5ff112ec3e2d5ceafce8a77d",
+      "bytes": 9590
+    },
+    {
+      "path": "/assets/motility9/gaze-02.jpg",
+      "sha256": "1164c11137c2151b49376aac0f90e0e3a416e43d084de11426b22dc18bcbe653",
+      "bytes": 9560
+    },
+    {
+      "path": "/assets/motility9/gaze-03.jpg",
+      "sha256": "2c3ee2a4ef0a2fddb0d9bd1250b10aa1d617c2c611dc4e0d59bf03a99032251f",
+      "bytes": 9576
+    },
+    {
+      "path": "/assets/motility9/gaze-04.jpg",
+      "sha256": "d4905cd7dff1346df570e0fbf6b164c9a95e2861e32d63bcb79322fbc760e890",
+      "bytes": 9005
+    },
+    {
+      "path": "/assets/motility9/gaze-05.jpg",
+      "sha256": "60e3a9a725dea6e96c969dd37e8be89570a0787e03172044af64e125777d5c32",
+      "bytes": 9070
+    },
+    {
+      "path": "/assets/motility9/gaze-06.jpg",
+      "sha256": "28619210eb66db520304d6b9ac027ac87fa6100f087ad45ba8076cdc8b12bd41",
+      "bytes": 8965
+    },
+    {
+      "path": "/assets/motility9/gaze-07.jpg",
+      "sha256": "08b452a8869b8efd1c04d52a0b47a25cfadfcf8ab839f21849eb6ee518e59e37",
+      "bytes": 8713
+    },
+    {
+      "path": "/assets/motility9/gaze-08.jpg",
+      "sha256": "1f6951b48941fda7a64e8a40741fd28f24705826538957e3d011b71fd3039da3",
+      "bytes": 8692
+    },
+    {
+      "path": "/assets/motility9/gaze-09.jpg",
+      "sha256": "a7a98c6c4143073309ac162d63c0d31019d8c0bc6dacd090c1ead62e29ac7ebc",
+      "bytes": 8732
+    }
+  ],
+  "original_css": {
+    "index.html": "194465bf060c051b03ae2f92e7c24b4281a74a70d07f548de05751ba91312441",
+    "privacy.html": "8c99c8a7d139a701d435824fc0497f901b2e178ddfa1d9deaa99fa9323b31eb2"
+  }
+}

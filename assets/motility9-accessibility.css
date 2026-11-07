@@ -1,0 +1,30 @@
+/* Layout/focus improvements only. Original product CSS, copy and image bytes
+   are preserved separately; this sheet does not change medical/legal claims. */
+html { scroll-padding-top: 8rem; }
+body { overflow-wrap: anywhere; }
+.publisher-bar { background: white; border-bottom: 1px solid var(--line); }
+.publisher-link { display: inline-flex; align-items: center; min-height: 48px; font-size: .875rem; color: var(--purple-dark); text-decoration: underline; text-underline-offset: .2em; }
+.skip-link { position: absolute; top: -12rem; left: 1rem; z-index: 100; padding: 1rem; background: white; }
+.skip-link:focus { top: 1rem; }
+a:focus-visible, summary:focus-visible { outline: 3px solid var(--purple-dark); outline-offset: 4px; }
+.brand, nav a, .footer-links a, .mobile-menu-panel a { min-height: 48px; min-width: 48px; display: inline-flex; align-items: center; }
+nav a, .footer-links a { padding-block: .55rem; }
+.mobile-menu-panel a { display: flex; }
+.mobile-menu summary { width: 48px; height: 48px; min-width: 48px; min-height: 48px; }
+.brand { min-width: 0; }
+.brand-name { overflow-wrap: anywhere; min-width: 0; }
+.meta { color: var(--muted); }
+.report-note-head span, .report-note-box, .report-footer { color: var(--muted); }
+.card a, .contact a { min-height: 48px; display: inline-flex; align-items: center; overflow-wrap: anywhere; }
+@media (max-width: 900px) {
+  .nav { gap: 12px; }
+  .brand { flex: 1; }
+  .brand img { flex-shrink: 0; }
+  .mobile-menu { flex-shrink: 0; }
+  .mobile-menu-panel { max-width: calc(100vw - 32px); min-width: min(190px, calc(100vw - 32px)); }
+  .hero-wordmark { overflow-wrap: anywhere; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
