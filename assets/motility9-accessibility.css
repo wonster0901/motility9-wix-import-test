@@ -28,3 +28,9 @@ nav a, .footer-links a { padding-block: .55rem; }
   html { scroll-behavior: auto; }
   * { transition: none !important; }
 }
+
+/* Verified official MOTILITY9 Google Play CTA */
+.hero-cta-row { display: flex; align-items: stretch; gap: 12px; flex-wrap: wrap; }
+.hero-cta-row .btn--store { background: #fff; color: #563679; border: 1px solid #bca6d0; box-shadow: none; }
+.hero-cta-row .btn--store:hover { background: #f8f3fc; box-shadow: none; }
+@media (max-width:560px) { .hero-cta-row { flex-direction: column; } }
