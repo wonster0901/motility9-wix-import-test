@@ -4,6 +4,9 @@ Sources: previously installed QA2674 source `daf23f467fdc854e941007b23134d27f952
 
 **Status: review matrix only, NOT an actual Play Console declaration.** Only the app publisher can confirm current SDK runtime, purchases, consent and submitted disclosures.
 
+**2026-11-09 retention/deletion matrix update:** See [TasteRoaming retention/deletion operating policy](TASTEROAMING_RETENTION_DELETION_POLICY_20261109.md). Ordinary email inquiries: 90 days after resolution (not implemented in mailbox); where applicable statutory consumer disputes 3 years and transaction/payment 5 years; active purchase owner/receipt data only as needed for Restore, not an indefinite data warehouse. Browser settings/Recent are stored locally; uninstall does not guarantee Android backup erasure. Google Play Data safety should not mark complete until actual server purge, device-binding deletion, Backup/D2D exclusion, mailbox process and relevant SDK third-party disclosures have passed independent operational checks. The policy is a release requirement, not currently verified operating retention.
+
+
 **2026-11-09 state update (no policy approval):** Cloud Run `tr-billing` is deployed in Seoul with billing disabled, and a Google Play RTDN test message was received on a Pull-only subscription. No paid transaction, user entitlement, refund/revocation event processing, Push callback, scheduler, production advertising or operating retention/deletion procedure is verified by those tests. The earlier source sentence about an undeployed backend describes the dated design baseline, not the present disabled infrastructure. The candidate site PR remains Draft; `/tasteroaming/privacy/` and `/tasteroaming/terms/` remain review-only, not usable as effective Play privacy/terms URLs.
 
 
