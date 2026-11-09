@@ -2,6 +2,8 @@
 
 Review date: 2026-11-07 (Asia/Seoul). **NOT A FINAL POLICY / DO NOT SUBMIT TO PLAY.**
 
+**2026-11-09 server-source implementation (unshipped):** App Draft PR #22 at `a2d29d7feaa65ca149ce7989a64511e596479282` contains guarded internal minimization of confirmed revoked purchase records (retain anti-replay tombstone) and owner-verified single-device unlink, with offline Firestore-emulator tests. Neither helper is a user-accessible deletion API or scheduled live purge. It does not resolve the real support mailbox, statutory evidence segregation, legacy record migration, GCP backups/PITR, consent or public deletion obligations. Active purchases must remain restorable. Keep privacy/Data safety drafts explicitly NOT effective.
+
 **2026-11-09 retention/deletion launch design:** [TasteRoaming retention/deletion operating policy](TASTEROAMING_RETENTION_DELETION_POLICY_20261109.md) now specifies local storage until clear, short-lived device location, ordinary resolved support inquiries **90 days**, applicable Korean statutory complaint records **3 years**, statutory contract/payment records **5 years** and advertising records **6 months**, and an active-purchase minimum owner/receipt record only while required to preserve Restore. Current Firestore ledger has no comprehensive purge, an unmerged app development branch now has explicit backup-exclusion rules but these are not shipped or device-verified, and mailbox retention has not been inspected: **these policy requirements are NOT active controls**. Site Privacy sections 6/7/9 remain marked review draft/not effective. Do not claim deletion/backups currently implemented.
 
 
