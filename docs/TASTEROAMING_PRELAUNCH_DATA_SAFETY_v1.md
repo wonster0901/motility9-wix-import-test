@@ -4,6 +4,9 @@ Sources: previously installed QA2674 source `daf23f467fdc854e941007b23134d27f952
 
 **Status: review matrix only, NOT an actual Play Console declaration.** Only the app publisher can confirm current SDK runtime, purchases, consent and submitted disclosures.
 
+**2026-11-09 state update (no policy approval):** Cloud Run `tr-billing` is deployed in Seoul with billing disabled, and a Google Play RTDN test message was received on a Pull-only subscription. No paid transaction, user entitlement, refund/revocation event processing, Push callback, scheduler, production advertising or operating retention/deletion procedure is verified by those tests. The earlier source sentence about an undeployed backend describes the dated design baseline, not the present disabled infrastructure. The candidate site PR remains Draft; `/tasteroaming/privacy/` and `/tasteroaming/terms/` remain review-only, not usable as effective Play privacy/terms URLs.
+
+
 | Potential Play Data safety category | Evidence and expected disclosure | Release action |
 | --- | --- | --- |
 | App activity / interactions | Google Mobile Ads SDK can collect ad/app activity and ad interactions for ad delivery and measurement; app keeps 20 visible Recent IDs locally. | Identify any GMA/UMP collection/sharing after production integration; do not mark no collection merely because Recent is local. |
