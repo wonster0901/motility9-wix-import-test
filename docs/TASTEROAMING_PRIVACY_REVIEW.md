@@ -2,6 +2,9 @@
 
 Review date: 2026-11-07 (Asia/Seoul). **NOT A FINAL POLICY / DO NOT SUBMIT TO PLAY.**
 
+**2026-11-09 operational reconciliation (draft review only):** Google Cloud Run `tr-billing` was deployed on 2026-11-08 in project `tasteroaming` with `BILLING_ENABLED=false`; the live deployment's `/health` returned 200 and its deliberately disabled `/ready` returned 503. The Play Console RTDN `testNotification` was received by the inert Pub/Sub Pull subscription and acknowledged. These are infrastructure/preparation proofs only, **not** live purchase verification, refund handling, actual Google Play entitlement, RTDN Push/Scheduler or operational privacy approval. The older code review table below records its historical 2026-11-07 baseline and must not be read as the current deployment state. The proposed legal pages remain not effective, noindex and unapproved for Play/UMP; server retention, deletion/backup, support-mail handling, identity binding and provider disclosures remain open.
+
+
 Initial app baseline: `wonster0901/taste_roaming` QA2674 source
 [`daf23f467fdc854e941007b23134d27f952f5fb4`](https://github.com/wonster0901/taste_roaming/tree/daf23f467fdc854e941007b23134d27f952f5fb4).
 Billing implementation cross-reference: Draft PR #22 at
