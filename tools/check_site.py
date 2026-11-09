@@ -15,7 +15,7 @@ PATCH_BASE = "53c71a0"
 STORE_URL = "https://play.google.com/store/apps/details?id=com.wonwinnie.motility9"
 ROUTES = ["/", "/motility9/", "/motility9/privacy/", "/motility9/support/",
           "/motility9/terms/", "/tasteroaming/", "/tasteroaming/privacy/",
-          "/tasteroaming/support/", "/tasteroaming/terms/", "/privacy.html",
+          "/tasteroaming/support/", "/tasteroaming/terms/", "/tasteroaming/delete-data/", "/privacy.html",
           "/support.html", "/terms.html", "/MOTILITY9_wix_import_test.html"]
 VOID = set("area base br col embed hr img input link meta param source track wbr".split())
 
@@ -188,7 +188,7 @@ def main():
                 target_doc = docs.get(target.path) or Document(dest.read_text(), target.path)
                 check(unquote(target.fragment) in target_doc.ids, f"{route}: missing anchor {value}")
             references += 1
-        if "/tasteroaming/" in route and any(x in route for x in ["privacy/", "terms/"]):
+        if "/tasteroaming/" in route and any(x in route for x in ["privacy/", "terms/", "delete-data/"]):
             text = file_for(route).read_text()
             check('content="noindex, nofollow"' in text, f"{route}: review indexing gate")
             check("Review draft — not effective" in text and "Effective date: not set" in text,
@@ -196,6 +196,12 @@ def main():
         if "/tasteroaming/" in route:
             check(all(a.get("src") in approved for t, a in tags if t == "img"), f"{route}: no unapproved screenshots/photos")
 
+    check("/tasteroaming/delete-data/" in [
+        a.get("href") for t, a in docs["/tasteroaming/support/"].elements if t == "a"
+    ], "Support must offer a discoverable draft deletion route")
+    check("/tasteroaming/delete-data/" in [
+        a.get("href") for t, a in docs["/tasteroaming/privacy/"].elements if t == "a"
+    ], "Privacy must offer a discoverable draft deletion route")
     used = {a["src"] for t, a in docs["/tasteroaming/"].elements if t == "img"}
     check(used == set(approved), "TasteRoaming must display all eight approved food images")
 
