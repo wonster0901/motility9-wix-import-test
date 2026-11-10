@@ -190,18 +190,18 @@ def main():
             references += 1
         if "/tasteroaming/" in route and any(x in route for x in ["privacy/", "terms/", "delete-data/"]):
             text = file_for(route).read_text()
-            check('content="noindex, nofollow"' in text, f"{route}: review indexing gate")
-            check("Review draft — not effective" in text and "Effective date: not set" in text,
-                  f"{route}: legal draft must be unmistakable")
+            check('content="index, follow"' in text, f"{route}: published policy must be indexable")
+            check("Effective: 10 November 2026" in text and "Review draft — not effective" not in text,
+                  f"{route}: published policy must have an effective date and no draft notice")
         if "/tasteroaming/" in route:
             check(all(a.get("src") in approved for t, a in tags if t == "img"), f"{route}: no unapproved screenshots/photos")
 
     check("/tasteroaming/delete-data/" in [
         a.get("href") for t, a in docs["/tasteroaming/support/"].elements if t == "a"
-    ], "Support must offer a discoverable draft deletion route")
+    ], "Support must offer a discoverable deletion route")
     check("/tasteroaming/delete-data/" in [
         a.get("href") for t, a in docs["/tasteroaming/privacy/"].elements if t == "a"
-    ], "Privacy must offer a discoverable draft deletion route")
+    ], "Privacy must offer a discoverable deletion route")
     used = {a["src"] for t, a in docs["/tasteroaming/"].elements if t == "img"}
     check(used == set(approved), "TasteRoaming must display all eight approved food images")
 
@@ -225,7 +225,7 @@ def main():
             check(legacy.main == baseline.main, f"{old}: legacy legal content changed")
             check([image_digest(a["src"]) for t, a in legacy.elements if t == "img"] == before, f"{old}: legacy icon")
     for route in ROUTES:
-        if route not in {"/", "/motility9/", "/tasteroaming/", "/tasteroaming/privacy/", "/tasteroaming/terms/"}:
+        if route not in {"/", "/motility9/", "/tasteroaming/", "/tasteroaming/privacy/", "/tasteroaming/terms/", "/tasteroaming/delete-data/", "/tasteroaming/support/"}:
             rel = str(file_for(route).relative_to(ROOT))
             before = subprocess.check_output(["git", "show", f"{PATCH_BASE}:{rel}"], cwd=ROOT)
             check(file_for(route).read_bytes() == before, f"{route}: policy/support/archive page changed by finishing patch")
