@@ -11,7 +11,7 @@ const baseline = '3497d2fab1c3f22aa5d08a075b4abcb839d31ea3';
 const finishBaseline = '53c71a0';
 const routes = ['/', '/motility9/', '/motility9/privacy/', '/motility9/support/',
   '/motility9/terms/', '/tasteroaming/', '/tasteroaming/privacy/',
-  '/tasteroaming/support/', '/tasteroaming/terms/', '/privacy.html', '/support.html', '/terms.html'];
+  '/tasteroaming/support/', '/tasteroaming/terms/', '/tasteroaming/delete-data/', '/privacy.html', '/support.html', '/terms.html'];
 const widths = process.env.QA_FAST ? [320, 1280] : [320, 375, 430, 768, 1280, 1440];
 const axe = await readFile(path.join(root, 'node_modules/axe-core/axe.min.js'), 'utf8');
 await mkdir(path.join(out, 'screenshots'), { recursive: true });
@@ -209,7 +209,7 @@ try {
   await mkdir(path.join(out, 'site'), { recursive: true });
   for (const name of ['index.html','privacy.html','support.html','terms.html','MOTILITY9_wix_import_test.html','assets','motility9','tasteroaming'])
     await cp(path.join(root, name), path.join(out, 'site', name), { recursive: true });
-  await writeFile(path.join(out, 'README.txt'), 'REVIEW ONLY — NOT PUBLISHED\nOpen review.html for before/after captures.\nFor working root-relative website links: cd site; python3 -m http.server 8750 --bind 127.0.0.1\nOpen http://127.0.0.1:8750/ in a browser.\nCNAME is intentionally omitted from this preview bundle. Do not deploy or submit draft policy URLs to Play Console.\n');
+  await writeFile(path.join(out, 'README.txt'), 'REVIEW ONLY — NOT PUBLISHED\nOpen review.html for before/after captures.\nFor working root-relative website links: cd site; python3 -m http.server 8750 --bind 127.0.0.1\nOpen http://127.0.0.1:8750/ in a browser.\nCNAME is intentionally omitted from this preview bundle. Live URL verification is separate from this local browser review.\n');
   console.log(JSON.stringify({ status: report.status, layoutChecks: report.checks.length, axeChecks,
     screenshots: report.screenshots.length, issues: report.issues.length, out }, null, 2));
   if (report.issues.length) { console.error(JSON.stringify(report.issues.slice(0, 25), null, 2)); process.exitCode = 1; }
