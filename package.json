@@ -1,0 +1,15 @@
+{
+  "name": "wonwinnie-multiapp-site-review",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "python3 tools/check_site.py",
+    "test:browser": "node tools/check_browser.mjs",
+    "preview": "python3 -m http.server 8750 --bind 127.0.0.1"
+  },
+  "devDependencies": {
+    "axe-core": "4.14.0",
+    "playwright": "1.65.0"
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "source": "TasteRoaming_MasterImages_640x480_v1.0_FINAL.zip",
+  "sourceSet": "350 FINAL PASS / 640x480 WebP",
+  "selection": [
+    {
+      "masterId": "TRF-0003",
+      "AppDishID": "KR003",
+      "EnglishName": "Bibimbap",
+      "Country": "KR",
+      "path": "assets/tasteroaming/TRF0003.webp",
+      "sha256": "358a4a12762cca41bdcf6c820724d8baee143b9ca45b7e81d673a1642cc31668",
+      "bytes": 48160,
+      "width": 640,
+      "height": 480,
+      "qa": "PASS"
+    },
+    {
+      "masterId": "TRF-0011",
+      "AppDishID": "JP001",
+      "EnglishName": "Edomae Sushi",
+      "Country": "JP",
+      "path": "assets/tasteroaming/TRF0011.webp",
+      "sha256": "2a119a40f57803e70f35f84e8dcc141d97f5688c327a31b1753fe4b7369627fb",
+      "bytes": 36772,
+      "width": 640,
+      "height": 480,
+      "qa": "PASS"
+    },
+    {
+      "masterId": "TRF-0023",
+      "AppDishID": "TH003",
+      "EnglishName": "Pad Thai",
+      "Country": "TH",
+      "path": "assets/tasteroaming/TRF0023.webp",
+      "sha256": "d2d484a08fec731b1fd767c573da38e4a90a9560d942f492fa6322e5bd55b595",
+      "bytes": 43448,
+      "width": 640,
+      "height": 480,
+      "qa": "PASS"
+    },
+    {
+      "masterId": "TRF-0029",
+      "AppDishID": "MX001",
+      "EnglishName": "Tacos al Pastor",
+      "Country": "MX",
+      "path": "assets/tasteroaming/TRF0029.webp",
+      "sha256": "1c3133b1515957fe6765f50a75925adae3b03c85e14c2285fee62704dafdabaf",
+      "bytes": 54780,
+      "width": 640,
+      "height": 480,
+      "qa": "PASS"
+    },
+    {
+      "masterId": "TRF-0043",
+      "AppDishID": "WD003",
+      "EnglishName": "Butter Chicken",
+      "Country": "IN",
+      "path": "assets/tasteroaming/TRF0043.webp",
+      "sha256": "4766ffd1e66262436959985df37e42c350e3faadecbe0444a9ec837ffc986985",
+      "bytes": 58588,
+      "width": 640,
+      "height": 480,
+      "qa": "PASS"
+    },
+    {
+      "masterId": "TRF-0045",
+      "AppDishID": "WD005",
+      "EnglishName": "Paella Valenciana",
+      "Country": "ES",
+      "path": "assets/tasteroaming/TRF0045.webp",
+      "sha256": "8421306e0484f405042fd9202bd18007a3e4fb50d2c243dd6a1a2a80b726ad91",
+      "bytes": 54180,
+      "width": 640,
+      "height": 480,
+      "qa": "PASS"
+    },
+    {
+      "masterId": "TRF-0049",
+      "AppDishID": "WD009",
+      "EnglishName": "Doro Wat",
+      "Country": "ET",
+      "path": "assets/tasteroaming/TRF0049.webp",
+      "sha256": "e7e3cec39e9f4429143bc8118046cacbe1e46a045a853d3ab95cb0752e822d89",
+      "bytes": 63458,
+      "width": 640,
+      "height": 480,
+      "qa": "PASS"
+    },
+    {
+      "masterId": "TRF-0050",
+      "AppDishID": "WD010",
+      "EnglishName": "Pastel de Nata",
+      "Country": "PT",
+      "path": "assets/tasteroaming/TRF0050.webp",
+      "sha256": "a55569eba795784f98593937bf879f0bd31cc7c414fbb80628b49b92be14c121",
+      "bytes": 45862,
+      "width": 640,
+      "height": 480,
+      "qa": "PASS"
+    }
+  ]
+}
