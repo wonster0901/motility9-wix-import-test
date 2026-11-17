@@ -16,7 +16,7 @@ STORE_URL = "https://play.google.com/store/apps/details?id=com.wonwinnie.motilit
 TASTE_STORE_URL = "https://play.google.com/store/apps/details?id=com.wonwinnie.taste_roaming"
 APPROVED_STORE_LINKS = {"/": [STORE_URL, TASTE_STORE_URL],
                         "/motility9/": [STORE_URL],
-                        "/tasteroaming/": [TASTE_STORE_URL, TASTE_STORE_URL]}
+                        "/tasteroaming/": [TASTE_STORE_URL]}
 ROUTES = ["/", "/motility9/", "/motility9/privacy/", "/motility9/support/",
           "/motility9/terms/", "/tasteroaming/", "/tasteroaming/privacy/",
           "/tasteroaming/support/", "/tasteroaming/terms/", "/tasteroaming/delete-data/", "/privacy.html",

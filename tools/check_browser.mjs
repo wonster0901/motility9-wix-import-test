@@ -106,7 +106,7 @@ try {
     const motility = 'https://play.google.com/store/apps/details?id=com.wonwinnie.motility9';
     const taste = 'https://play.google.com/store/apps/details?id=com.wonwinnie.taste_roaming';
     const expectedStoreLinks = ({ '/': [motility, taste], '/motility9/': [motility],
-      '/tasteroaming/': [taste, taste] })[route] || [];
+      '/tasteroaming/': [taste] })[route] || [];
     if (result.overflow || result.smallTargets.length || result.clipped.length || result.brokenImages.length ||
         result.invalidFoodImages.length ||
         JSON.stringify(result.storeLinks.map(a => a.href).sort()) !== JSON.stringify(expectedStoreLinks.sort()) ||
