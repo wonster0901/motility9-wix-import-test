@@ -193,6 +193,14 @@ def main():
             check('content="index, follow"' in text, f"{route}: published policy must be indexable")
             check("Effective: 10 November 2026" in text and "Review draft — not effective" not in text,
                   f"{route}: published policy must have an effective date and no draft notice")
+            # A former deletion page used effective dates while still describing
+            # the same policies as unapproved drafts. Prevent that contradiction
+            # from silently passing review CI; do not rewrite legal substance.
+            lowered = text.casefold()
+            for stale in ("privacy notice draft",
+                          "require final approval before public use",
+                          "drafts are not final notices"):
+                check(stale not in lowered, f"{route}: stale draft disclaimer: {stale}")
         if "/tasteroaming/" in route:
             check(all(a.get("src") in approved for t, a in tags if t == "img"), f"{route}: no unapproved screenshots/photos")
 

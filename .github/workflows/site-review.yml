@@ -26,6 +26,12 @@ jobs:
         run: |
           mkdir -p "$RUNNER_TEMP/site-review"
           python3 tools/check_site.py | tee "$RUNNER_TEMP/site-review/static-report.json"
+      # Observes current GitHub Pages custom-domain public HTML only.
+      # It does not deploy, authenticate, submit a Play form or fail the
+      # source-review PR merely because a remote URL is temporarily unreachable.
+      - name: Observe public TasteRoaming policy HTTPS (informational only)
+        run: |
+          python3 tools/probe_public_tasteroaming.py | tee "$RUNNER_TEMP/site-review/live-policy-https-evidence.json"
       - name: Test responsive layout and accessibility; capture before and after
         env:
           SITE_QA_OUTPUT: ${{ runner.temp }}/site-review
