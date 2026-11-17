@@ -102,11 +102,15 @@ try {
         brokenImages: [...document.images].filter(img => (img.complete && !img.naturalWidth) || (!img.complete && img.loading !== 'lazy')).map(img => img.getAttribute('src')) };
     });
     report.checks.push({ route, width, scale, menu, ...result });
-    const expectedStoreLinks = ['/', '/motility9/'].includes(route) ? 1 : 0;
+    // Validate exact allowed store-link multiset; never relax the target/rel checks.
+    const motility = 'https://play.google.com/store/apps/details?id=com.wonwinnie.motility9';
+    const taste = 'https://play.google.com/store/apps/details?id=com.wonwinnie.taste_roaming';
+    const expectedStoreLinks = ({ '/': [motility, taste], '/motility9/': [motility],
+      '/tasteroaming/': [taste, taste] })[route] || [];
     if (result.overflow || result.smallTargets.length || result.clipped.length || result.brokenImages.length ||
-        result.invalidFoodImages.length || result.storeLinks.length !== expectedStoreLinks ||
-        result.storeLinks.some(a => a.href !== 'https://play.google.com/store/apps/details?id=com.wonwinnie.motility9' ||
-          a.target !== '_blank' || !a.rel.includes('noopener') || !a.rel.includes('noreferrer')))
+        result.invalidFoodImages.length ||
+        JSON.stringify(result.storeLinks.map(a => a.href).sort()) !== JSON.stringify(expectedStoreLinks.sort()) ||
+        result.storeLinks.some(a => a.target !== '_blank' || !a.rel.includes('noopener') || !a.rel.includes('noreferrer')))
       report.issues.push({ kind: 'layout', route, width, scale, menu, ...result });
   }
 
