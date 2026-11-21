@@ -13,6 +13,10 @@ ROOT = Path(__file__).resolve().parents[1]
 BASE = "3497d2fab1c3f22aa5d08a075b4abcb839d31ea3"
 PATCH_BASE = "53c71a0"
 STORE_URL = "https://play.google.com/store/apps/details?id=com.wonwinnie.motility9"
+TASTE_STORE_URL = "https://play.google.com/store/apps/details?id=com.wonwinnie.taste_roaming"
+APPROVED_STORE_LINKS = {"/": [STORE_URL, TASTE_STORE_URL],
+                        "/motility9/": [STORE_URL],
+                        "/tasteroaming/": [TASTE_STORE_URL]}
 ROUTES = ["/", "/motility9/", "/motility9/privacy/", "/motility9/support/",
           "/motility9/terms/", "/tasteroaming/", "/tasteroaming/privacy/",
           "/tasteroaming/support/", "/tasteroaming/terms/", "/tasteroaming/delete-data/", "/privacy.html",
@@ -145,8 +149,9 @@ def main():
     external = set()
     for route, doc in docs.items():
         tags = doc.elements
-        stores = [a for t, a in tags if t == "a" and a.get("href") == STORE_URL]
-        check(len(stores) == (1 if route in {"/", "/motility9/"} else 0), f"{route}: approved store CTA must be retained only on its two approved pages")
+        stores = [a for t, a in tags if t == "a" and a.get("href") in {STORE_URL, TASTE_STORE_URL}]
+        check(sorted(a.get("href") for a in stores) == sorted(APPROVED_STORE_LINKS.get(route, [])),
+              f"{route}: unexpected or missing approved store CTA")
         for a in stores:
             check(a.get("target") == "_blank" and {"noopener", "noreferrer"} <= set(a.get("rel", "").split()), f"{route}: store link safety")
         check(len(doc.ids) == len(set(doc.ids)), f"{route}: duplicate IDs")
@@ -173,8 +178,7 @@ def main():
                 check(urlsplit(value).scheme == "https", f"{route}: insecure external link")
                 if "play.google.com" in value:
                     check(
-                        value == STORE_URL
-                        and route in {"/", "/motility9/"},
+                        value in APPROVED_STORE_LINKS.get(route, []),
                         f"{route}: unverified or misplaced store CTA",
                     )
                 external.add(value)
